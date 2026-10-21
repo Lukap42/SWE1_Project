@@ -1,0 +1,214 @@
+\documentclass{beamer}
+
+\date{October 21, 2026}
+\author{Łukasz Piętka, Michał Krzysztosiak, Konrad Miturski, Michał Sobczak}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+\title{User Stories}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{User: Customer}
+Must have:
+\begin{itemize}
+\item As a customer, I want to browse the restaurant menu, so that I can see available dishes and their prices.
+\item As a customer, I want to order food, so that I can have meals delivered to my chosen location.
+\item As a customer, I want to make a table reservation online, so that I can secure a table at preferred time.
+\end{itemize}
+Should have:
+\begin{itemize}
+\item As a customer, I want to create an account, so that I can manage my reservations and orders.
+\item As a customer, I want to track my order status, so that I know when my food will be delivered.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{User: Customer}
+Could have:
+\begin{itemize}
+\item As a customer, I want to view my previous orders, so that I can easily reorder my favorite meals.
+\end{itemize}
+Won't have:
+\begin{itemize}
+\item As a customer, I want to rate dishes and deliveries, so that I can share my experience with the restaurant.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{User: Customer}
+\begin{tabular}{| l | p{4cm} | p{4cm} |}
+\hline
+Priority & User Story & Acceptability criteria \\
+\hline
+Must & As a customer, I want to browse the restaurant menu, so that I can see available dishes and their prices.
+     & Application menu shows dish name and price for available items. Unavailable items are not shown. \\
+\hline
+Must & As a customer, I want to order food, so that I can have meals delivered to my chosen location.
+     & Orders can be submitted with delivery address and contact information. System validates payment and sends confirmation. \\
+\hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}{User: Customer}
+\begin{tabular}{| l | p{4cm} | p{4cm} |}
+\hline
+Priority & User Story & Acceptability criteria \\
+\hline
+Must & As a customer, I want to make a table reservation online, so that I can secure a table at preferred time.
+     & User submits contact information and system validates if reservation is available. On success, sends confirmation. \\
+\hline
+Should & As a customer, I want to create an account, so that I can manage my reservations and orders.
+       & Registration saves account information and creates unique identifier. Credentials stored hashed. \\
+\hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}{User: Customer}
+\begin{tabular}{| l | p{4cm} | p{4cm} |}
+\hline
+Priority & User Story & Acceptability criteria \\
+\hline
+Should & As a customer, I want to track my order status, so that I know when my food will be delivered.
+       & Application shows order contents along with estimated delivery time. \\
+\hline
+Could & As a customer, I want to view my previous orders, so that I can easily reorder my favorite meals.
+      & History is available only to users with an account. Displays order contents, price and date of order. \\
+\hline
+Won't & As a customer, I want to rate dishes and deliveries, so that I can share my experience with the restaurant.
+      & Out of scope for the application. \\
+\hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}{User: Restaurant manager}
+Must have:
+\begin{itemize}
+\item As a restaurant manager, I want to view all upcoming reservations, so that I can manage table availability.
+\item As a restaurant manager, I want to assign delivery orders to available drivers, so that deliveries can be completed efficiently.
+\item As a restaurant manager, I want different user roles to have different access permissions, so that sensitive business information remains protected.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{User: Restaurant manager}
+Should have:
+\begin{itemize}
+\item As a restaurant manager, I want to view order statistics, so that I can identify the most popular dishes.
+\item As a restaurant manager, I want the system to prevent double bookings, so that the same table cannot be reserved by multiple customers at the same time.
+\item As a restaurant manager, I want to update menu items and prices, so that customers always see the current restaurant offer.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{User: Restaurant manager}
+Could have:
+\begin{itemize}
+\item As a restaurant manager, I want to analyze reservation trends, so that I can better prepare for busy periods.
+\end{itemize}
+Won't have:
+\begin{itemize}
+\item As a restaurant manager, I want to predict future sales using historical data, so that I can optimize inventory and staffing.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{User: Restaurant manager}
+\begin{tabular}{| l | p{4cm} | p{4cm} |}
+\hline
+Priority & User Story & Acceptability criteria \\
+\hline
+Must & As a restaurant manager, I want to view all upcoming reservations, so that I can manage table availability.
+     & TODO \\
+\hline
+Must & As a restaurant manager, I want to assign delivery orders to available drivers, so that deliveries can be completed efficiently.
+     & TODO \\
+\hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}{User: Restaurant manager}
+\begin{tabular}{| l | p{4cm} | p{4cm} |}
+\hline
+Priority & User Story & Acceptability criteria \\
+\hline
+Must & As a restaurant manager, I want different user roles to have different access permissions, so that sensitive business information remains protected.
+     & TODO \\
+\hline
+Should & As a restaurant manager, I want to view order statistics, so that I can identify the most popular dishes.
+       & TODO \\
+\hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}{User: Restaurant manager}
+\begin{tabular}{| l | p{4cm} | p{4cm} |}
+\hline
+Priority & User Story & Acceptability criteria \\
+\hline
+Should & As a restaurant manager, I want the system to prevent double bookings, so that the same table cannot be reserved by multiple customers at the same time.
+       & TODO \\
+\hline
+Should & As a restaurant manager, I want to update menu items and prices, so that customers always see the current restaurant offer.
+       & TODO \\
+\hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}{User: Restaurant manager}
+\begin{tabular}{| l | p{4cm} | p{4cm} |}
+\hline
+Priority & User Story & Acceptability criteria \\
+\hline
+Could & As a restaurant manager, I want to analyze reservation trends, so that I can better prepare for busy periods.
+      & TODO \\
+\hline
+Won't & As a restaurant manager, I want to predict future sales using historical data, so that I can optimize inventory and staffing.
+      & TODO \\
+\hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}{User: Delivery driver}
+Must have:
+\begin{itemize}
+\item As a delivery driver, I want to view my assigned deliveries, so that I know which orders I need to deliver and where.
+\end{itemize}
+Should have:
+\begin{itemize}
+\item As a delivery driver, I want to mark an order as delivered, so that the system can update its status automatically.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{User: Delivery driver}
+\begin{tabular}{| l | p{4cm} | p{4cm} |}
+\hline
+Priority & User Story & Acceptability criteria \\
+\hline
+Must & As a delivery driver, I want to view my assigned deliveries, so that I know which orders I need to deliver and where.
+     & Application shows list of deliveries currently assigned to the driver. \\
+\hline
+Should & As a delivery driver, I want to mark an order as delivered, so that the system can update its status automatically.
+       & Application allows the marking a delivery as completed, removing it from the list of active deliveries. \\
+\hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}{User: Restaurant owner}
+Must have:
+\begin{itemize}
+\item As a restaurant owner, I want to view financial reports, so that I can monitor the restaurant's revenue and financial performance.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{User: Restaurant owner}
+\begin{tabular}{| l | p{4cm} | p{4cm} |}
+\hline
+Priority & User Story & Acceptability criteria \\
+\hline
+Must & As a restaurant owner, I want to view financial reports, so that I can monitor the restaurant's revenue and financial performance.
+     & Application shows breakdown of financial earnings and costs categorized for a given month. \\
+\hline
+\end{tabular}
+\end{frame}
+
+\end{document}
