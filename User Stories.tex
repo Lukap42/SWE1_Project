@@ -177,6 +177,14 @@ Should have:
 \begin{itemize}
 \item As a delivery driver, I want to mark an order as delivered, so that the system can update its status automatically.
 \end{itemize}
+Could have:
+\begin{itemize}
+\item As a delivery driver, I want to view the estimated delivery route, so that I can plan my journey and deliver orders efficiently.
+\end{itemize}
+Won't have:
+\begin{itemize}
+\item As a delivery driver, I want to communicate with customers through the application, so that I can inform them about delivery delays or special circumstances.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{User: Delivery driver}
@@ -193,10 +201,39 @@ Should & As a delivery driver, I want to mark an order as delivered, so that the
 \end{tabular}
 \end{frame}
 
+\begin{frame}{User: Delivery driver}
+\begin{tabular}{| l | p{4cm} | p{4cm} |}
+\hline
+Priority & User Story & Acceptability criteria \\
+\hline
+Could & As a delivery driver, I want to view the estimated delivery route, so that I can plan my journey and deliver orders efficiently.
+      & Application displays the delivery address and a suggested route for each assigned delivery. \\
+\hline
+Won't & As a delivery driver, I want to communicate with customers through the application, so that I can inform them about delivery delays or special circumstances.
+      & Out of scope for the application. \\
+\hline
+\end{tabular}
+\end{frame}
+
 \begin{frame}{User: Restaurant owner}
 Must have:
 \begin{itemize}
 \item As a restaurant owner, I want to view financial reports, so that I can monitor the restaurant's revenue and financial performance.
+\end{itemize}
+Should have:
+\begin{itemize}
+\item As a restaurant owner, I want to compare financial performance across different months, so that I can identify changes in revenue and costs.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{User: Restaurant owner}
+Could have:
+\begin{itemize}
+\item As a restaurant owner, I want to export financial reports, so that I can use the data for accounting and record keeping.
+\end{itemize}
+Won't have:
+\begin{itemize}
+\item As a restaurant owner, I want to receive automatic notifications when the restaurant receives a new order, so that I can stay informed about daily operations without checking the application.
 \end{itemize}
 \end{frame}
 
@@ -207,6 +244,23 @@ Priority & User Story & Acceptability criteria \\
 \hline
 Must & As a restaurant owner, I want to view financial reports, so that I can monitor the restaurant's revenue and financial performance.
      & Application shows breakdown of financial earnings and costs categorized for a given month. \\
+\hline
+Should & As a restaurant owner, I want to compare financial performance across different months, so that I can identify changes in revenue and costs.
+       & Application allows the owner to select two or more months and compare their total revenue and costs. \\
+\hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}{User: Restaurant owner}
+\begin{tabular}{| l | p{4cm} | p{4cm} |}
+\hline
+Priority & User Story & Acceptability criteria \\
+\hline
+Could & As a restaurant owner, I want to export financial reports, so that I can use the data for accounting and record keeping.
+      & Application allows the owner to download a financial report in CSV or PDF format for a selected month. \\
+\hline
+Won't & As a restaurant owner, I want to receive automatic notifications when the restaurant receives a new order, so that I can stay informed about daily operations without checking the application.
+      & Out of scope for the application. \\
 \hline
 \end{tabular}
 \end{frame}
