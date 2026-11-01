@@ -1,0 +1,35 @@
+% US-06 - Manage User Access Permissions
+% This is an includable LaTeX fragment. No preamble is required.
+\subsection{US-06 --- Manage User Access Permissions}
+\noindent\textbf{Role:} Restaurant Manager\\
+\textbf{Priority:} Must Have
+
+\subsubsection*{User Story}
+As a restaurant manager, I want different user roles to have different access permissions, so that sensitive business information remains protected.
+
+\subsubsection*{Functional Acceptance Criteria}
+\begin{itemize}
+  \item $\square$ Does the system assign an appropriate role to each employee account?
+  \item $\square$ Does the system restrict access to information based on the employee's assigned role?
+  \item $\square$ Are employees prevented from accessing information reserved for other roles?
+  \item $\square$ Does the system reject unauthorized requests to restricted operations?
+  \item $\square$ Can an authorized administrator modify an employee's assigned role?
+  \item $\square$ Are updated permissions applied to subsequent access requests?
+\end{itemize}
+
+\subsubsection*{Non-Functional Requirements}
+\begin{itemize}
+  \item \textbf{Security:} Access permissions must be enforced by the backend, independently of the user interface.
+  \item \textbf{Security:} Unauthorized requests must not expose sensitive information in error responses.
+  \item \textbf{Performance:} Role-based authorization checks should add no more than 100 milliseconds to request processing for at least 95\% of requests under normal operating conditions.
+  \item \textbf{Auditability:} Changes to employee roles should be recorded with the user responsible and the time of modification.
+\end{itemize}
+
+\subsubsection*{Notes and Edge Cases}
+\begin{itemize}
+  \item An employee attempts to access information belonging to another role.
+  \item An employee's role changes during an active session.
+  \item An unauthenticated user requests restricted information.
+  \item An employee account has no valid role assigned.
+  \item An unauthorized employee attempts to modify another user's permissions.
+\end{itemize}

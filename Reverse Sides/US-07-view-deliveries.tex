@@ -1,0 +1,35 @@
+% US-07 - View Assigned Deliveries
+% This is an includable LaTeX fragment. No preamble is required.
+\subsection{US-07 --- View Assigned Deliveries}
+\noindent\textbf{Role:} Delivery Driver\\
+\textbf{Priority:} Must Have
+
+\subsubsection*{User Story}
+As a delivery driver, I want to view my assigned deliveries, so that I know which orders I need to deliver and where.
+
+\subsubsection*{Functional Acceptance Criteria}
+\begin{itemize}
+  \item $\square$ Can the delivery driver view a list of deliveries currently assigned to them?
+  \item $\square$ Does each assigned delivery display its delivery address?
+  \item $\square$ Can the driver identify which order corresponds to each delivery?
+  \item $\square$ Does the system prevent a driver from viewing deliveries assigned to other drivers?
+  \item $\square$ Does the delivery list reflect newly assigned orders after its data is refreshed?
+  \item $\square$ Does the system display an appropriate message when no deliveries are assigned?
+\end{itemize}
+
+\subsubsection*{Non-Functional Requirements}
+\begin{itemize}
+  \item \textbf{Performance:} The assigned deliveries list should load within 2 seconds for at least 95\% of requests under normal operating conditions.
+  \item \textbf{Security:} Drivers must only access delivery information for orders currently assigned to them.
+  \item \textbf{Usability:} The delivery list must remain readable and usable on mobile devices.
+  \item \textbf{Reliability:} Successfully saved assignments must remain available after the driver signs out and signs in again.
+\end{itemize}
+
+\subsubsection*{Notes and Edge Cases}
+\begin{itemize}
+  \item No deliveries are assigned to the driver.
+  \item A new delivery is assigned while the driver is viewing the list.
+  \item A delivery is reassigned to another driver.
+  \item The driver temporarily loses network connectivity.
+  \item The driver attempts to access another driver's delivery details.
+\end{itemize}

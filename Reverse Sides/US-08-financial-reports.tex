@@ -1,0 +1,35 @@
+% US-08 - View Financial Reports
+% This is an includable LaTeX fragment. No preamble is required.
+\subsection{US-08 --- View Financial Reports}
+\noindent\textbf{Role:} Restaurant Owner\\
+\textbf{Priority:} Must Have
+
+\subsubsection*{User Story}
+As a restaurant owner, I want to view financial reports, so that I can monitor the restaurant's revenue and financial performance.
+
+\subsubsection*{Functional Acceptance Criteria}
+\begin{itemize}
+  \item $\square$ Can the restaurant owner select a month for which to view financial information?
+  \item $\square$ Does the system display total revenue for the selected month?
+  \item $\square$ Does the system display costs grouped into appropriate categories?
+  \item $\square$ Does the system provide a breakdown of financial earnings and costs for the selected month?
+  \item $\square$ Does the system display an appropriate message when financial data is unavailable for the selected month?
+  \item $\square$ Does the system prevent unauthorized users from accessing financial reports?
+\end{itemize}
+
+\subsubsection*{Non-Functional Requirements}
+\begin{itemize}
+  \item \textbf{Performance:} Monthly financial reports should be generated within 5 seconds for at least 95\% of requests under normal operating conditions.
+  \item \textbf{Security:} Financial reports must only be accessible to authorized users.
+  \item \textbf{Accuracy:} Reported totals must be consistent with the financial records used to generate the report.
+  \item \textbf{Reliability:} A temporary reporting failure must not modify stored financial records.
+\end{itemize}
+
+\subsubsection*{Notes and Edge Cases}
+\begin{itemize}
+  \item No transactions exist for the selected month.
+  \item Financial data for the selected period is incomplete.
+  \item Some expense categories have no recorded costs.
+  \item A user without the required permissions attempts to access financial reports.
+  \item The reporting service is temporarily unavailable.
+\end{itemize}

@@ -1,0 +1,35 @@
+% US-03 - Make a Table Reservation
+% This is an includable LaTeX fragment. No preamble is required.
+\subsection{US-03 --- Make a Table Reservation}
+\noindent\textbf{Role:} Customer\\
+\textbf{Priority:} Must Have
+
+\subsubsection*{User Story}
+As a customer, I want to make a table reservation online, so that I can secure a table at preferred time.
+
+\subsubsection*{Functional Acceptance Criteria}
+\begin{itemize}
+  \item $\square$ Can the customer select a reservation date, time and amount of people?
+  \item $\square$ Can the customer provide the required contact information?
+  \item $\square$ Does the system verify table availability before confirming the reservation?
+  \item $\square$ Does the system prevent overlapping reservations for the same table?
+  \item $\square$ Does the customer receive confirmation after a successful reservation?
+  \item $\square$ Does the system inform the customer when the requested reservation cannot be completed?
+\end{itemize}
+
+\subsubsection*{Non-Functional Requirements}
+\begin{itemize}
+  \item \textbf{Performance:} Availability checks should complete within 2 seconds for at least 95\% of requests under normal operating conditions.
+  \item \textbf{Reliability:} Simultaneous reservation requests must not result in overlapping confirmed bookings for the same table.
+  \item \textbf{Security:} Customer contact information must be protected against unauthorized access.
+  \item \textbf{Usability:} Customers should be able to complete a reservation without creating an account.
+\end{itemize}
+
+\subsubsection*{Notes and Edge Cases}
+\begin{itemize}
+  \item No suitable table is available for the selected date and time.
+  \item Two customers attempt to reserve the same table simultaneously.
+  \item The customer enters invalid or incomplete contact information.
+  \item The selected reservation time is in the past.
+  \item The confirmation notification cannot be delivered.
+\end{itemize}

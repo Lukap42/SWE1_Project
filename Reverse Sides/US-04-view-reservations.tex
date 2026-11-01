@@ -1,0 +1,34 @@
+% US-04 - View Upcoming Reservations
+% This is an includable LaTeX fragment. No preamble is required.
+\subsection{US-04 --- View Upcoming Reservations}
+\noindent\textbf{Role:} Restaurant Manager\\
+\textbf{Priority:} Must Have
+
+\subsubsection*{User Story}
+As a restaurant manager, I want to view all upcoming reservations, so that I can manage table availability.
+
+\subsubsection*{Functional Acceptance Criteria}
+\begin{itemize}
+  \item $\square$ Can the restaurant manager view a list of upcoming reservations?
+  \item $\square$ Does each reservation display its date and time?
+  \item $\square$ Does the system display only reservations that have not yet reached their scheduled time?
+  \item $\square$ Can the manager identify the reserved table for each reservation?
+  \item $\square$ Does the system display an appropriate message when no upcoming reservations exist?
+  \item $\square$ Are users without the required permissions prevented from accessing reservation information?
+\end{itemize}
+
+\subsubsection*{Non-Functional Requirements}
+\begin{itemize}
+  \item \textbf{Performance:} The reservation list should load within 2 seconds for at least 95\% of requests containing up to 500 reservations.
+  \item \textbf{Security:} Only authorized restaurant personnel may access reservation data.
+  \item \textbf{Reliability:} Confirmed reservations must remain available after a system restart.
+  \item \textbf{Usability:} Reservations should be displayed in chronological order.
+\end{itemize}
+
+\subsubsection*{Notes and Edge Cases}
+\begin{itemize}
+  \item There are no upcoming reservations.
+  \item Multiple reservations exist for the same time.
+  \item A reservation is cancelled while the manager is viewing the list.
+  \item The reservation database is temporarily unavailable.
+\end{itemize}

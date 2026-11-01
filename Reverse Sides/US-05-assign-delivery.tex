@@ -1,0 +1,35 @@
+% US-05 - Assign Delivery Orders to Drivers
+% This is an includable LaTeX fragment. No preamble is required.
+\subsection{US-05 --- Assign Delivery Orders to Drivers}
+\noindent\textbf{Role:} Restaurant Manager\\
+\textbf{Priority:} Must Have
+
+\subsubsection*{User Story}
+As a restaurant manager, I want to assign delivery orders to available drivers, so that deliveries can be completed efficiently.
+
+\subsubsection*{Functional Acceptance Criteria}
+\begin{itemize}
+  \item $\square$ Can the restaurant manager view delivery orders awaiting driver assignment?
+  \item $\square$ Does the system display a list of available delivery drivers?
+  \item $\square$ Does the system display the number of planned deliveries assigned to each available driver?
+  \item $\square$ Can the restaurant manager assign an unassigned delivery order to an available driver?
+  \item $\square$ Does the assigned delivery appear in the selected driver's delivery list?
+  \item $\square$ Does the system prevent conflicting assignments of the same delivery order?
+\end{itemize}
+
+\subsubsection*{Non-Functional Requirements}
+\begin{itemize}
+  \item \textbf{Performance:} Driver availability and workload information should load within 2 seconds for at least 95\% of requests under normal operating conditions.
+  \item \textbf{Reliability:} A delivery order must not be assigned to multiple drivers simultaneously.
+  \item \textbf{Security:} Only authorized restaurant managers may assign delivery orders to drivers.
+  \item \textbf{Consistency:} Driver assignment changes must be reflected in the driver's delivery list after the assignment is saved.
+\end{itemize}
+
+\subsubsection*{Notes and Edge Cases}
+\begin{itemize}
+  \item No delivery drivers are currently available.
+  \item A driver becomes unavailable before the assignment is confirmed.
+  \item Two managers attempt to assign the same delivery simultaneously.
+  \item The selected order has already been assigned.
+  \item The assignment operation fails due to a server error.
+\end{itemize}

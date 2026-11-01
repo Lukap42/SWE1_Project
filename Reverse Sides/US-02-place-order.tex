@@ -1,0 +1,35 @@
+% US-02 - Order Food
+% This is an includable LaTeX fragment. No preamble is required.
+\subsection{US-02 --- Order Food}
+\noindent\textbf{Role:} Customer\\
+\textbf{Priority:} Must Have
+
+\subsubsection*{User Story}
+As a customer, I want to order food, so that I can have meals delivered to my chosen location.
+
+\subsubsection*{Functional Acceptance Criteria}
+\begin{itemize}
+  \item $\square$ Can the customer select available dishes and specify their quantities?
+  \item $\square$ Can the customer provide a delivery address and contact information?
+  \item $\square$ Does the system validate required order information before processing payment?
+  \item $\square$ Does the system validate the payment before confirming the order?
+  \item $\square$ Does the customer receive an order confirmation after successful payment?
+  \item $\square$ Does the system prevent confirmation when payment fails or the selected items are unavailable?
+\end{itemize}
+
+\subsubsection*{Non-Functional Requirements}
+\begin{itemize}
+  \item \textbf{Security:} Payment information must be transmitted over an encrypted HTTPS connection.
+  \item \textbf{Performance:} Order validation should complete within 2 seconds for at least 95\% of requests, excluding external payment processing.
+  \item \textbf{Reliability:} A successfully paid order must not be created more than once if the customer repeats a request.
+  \item \textbf{Privacy:} Customer contact information and delivery addresses must only be accessible to authorized users and services.
+\end{itemize}
+
+\subsubsection*{Notes and Edge Cases}
+\begin{itemize}
+  \item The customer submits an empty order.
+  \item The delivery address or contact information is incomplete.
+  \item A selected dish becomes unavailable before payment.
+  \item Payment is declined or the payment service times out.
+  \item The customer submits the same order request multiple times.
+\end{itemize}
