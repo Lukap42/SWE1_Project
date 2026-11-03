@@ -1,0 +1,57 @@
+name: Compile LaTeX documents
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            latexmk \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            lmodern
+
+      - name: Compile LaTeX documents
+        run: |
+          while IFS= read -r line; do
+            echo "Compiling: $line"
+
+            latexmk \
+              -pdf \
+              -interaction=nonstopmode \
+              -halt-on-error \
+              "$line"
+
+          done < latex_auto_compile.txt
+
+      - name: Commit PDFs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          while IFS= read -r file; do
+            git add -f "${file%.tex}.pdf"
+          done < latex_auto_compile.txt
+
+          if ! git diff --cached --quiet; then
+            git commit -m "Auto-update PDFs"
+            git push
+          else
+            echo "Nothing to do."
+          fi
