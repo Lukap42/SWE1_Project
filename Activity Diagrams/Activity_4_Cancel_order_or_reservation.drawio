@@ -1,48 +1,194 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net">
   <diagram name="4 Cancel an order or reservation" id="d1">
-    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="1210" math="0" shadow="0">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="1400" math="0" shadow="0" background="#FFFFFF">
       <root>
-        <mxCell id="0"/>
-        <mxCell id="1" parent="0"/>
-        <mxCell id="c2" value="Activity 4 – Cancel an order or reservation" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="10" y="8" width="700" height="30" as="geometry"/></mxCell>
-        <mxCell id="c3" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="0" y="50" width="300" height="1140" as="geometry"/></mxCell>
-        <mxCell id="c4" value="Customer" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#000000;fontStyle=1;fontSize=13;" vertex="1" parent="1"><mxGeometry x="0" y="50" width="300" height="34" as="geometry"/></mxCell>
-        <mxCell id="c5" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="300" y="50" width="300" height="1140" as="geometry"/></mxCell>
-        <mxCell id="c6" value="System" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#000000;fontStyle=1;fontSize=13;" vertex="1" parent="1"><mxGeometry x="300" y="50" width="300" height="34" as="geometry"/></mxCell>
-        <mxCell id="c7" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="600" y="50" width="300" height="1140" as="geometry"/></mxCell>
-        <mxCell id="c8" value="Restaurant manager" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#000000;fontStyle=1;fontSize=13;" vertex="1" parent="1"><mxGeometry x="600" y="50" width="300" height="34" as="geometry"/></mxCell>
-        <mxCell id="c9" value="Rules: order – customer may cancel until PREPARING starts; reservation – before the cancellation deadline. Manager cancels while not OUT_FOR_DELIVERY." style="shape=note;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=6;fontSize=11;fillColor=#FFF2CC;strokeColor=#000000;size=14;" vertex="1" parent="1"><mxGeometry x="640" y="856" width="250" height="80" as="geometry"/></mxCell>
-        <mxCell id="c10" value="" style="ellipse;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="135.0" y="115.0" width="30" height="30" as="geometry"/></mxCell>
-        <mxCell id="c11" value="" style="ellipse;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="735.0" y="115.0" width="30" height="30" as="geometry"/></mxCell>
-        <mxCell id="c12" value="Request cancellation&lt;br&gt;(order or reservation)" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1"><mxGeometry x="55.0" y="199.0" width="190" height="46" as="geometry"/></mxCell>
-        <mxCell id="c13" value="Cancel from restaurant side&lt;br&gt;(closure, out of ingredients)" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1"><mxGeometry x="655.0" y="199.0" width="190" height="46" as="geometry"/></mxCell>
-        <mxCell id="c14" value="Load item; check current status&lt;br&gt;and cancellation deadline" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1"><mxGeometry x="345.0" y="291.0" width="210" height="46" as="geometry"/></mxCell>
-        <mxCell id="c15" value="customer&lt;br&gt;cancel allowed?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="360.0" y="370.0" width="180" height="72" as="geometry"/></mxCell>
-        <mxCell id="c16" value="Receive refusal&lt;br&gt;(too late / already&lt;br&gt;being prepared)" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1"><mxGeometry x="55.0" y="375.5" width="190" height="61" as="geometry"/></mxCell>
-        <mxCell id="c17" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="135.0" y="483.0" width="30" height="30" as="geometry"/></mxCell>
-        <mxCell id="c18" value="Set status CANCELLED;&lt;br&gt;release table / stock" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1"><mxGeometry x="355.0" y="475.0" width="190" height="46" as="geometry"/></mxCell>
-        <mxCell id="c19" value="payment&lt;br&gt;captured?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="365.0" y="554.0" width="170" height="72" as="geometry"/></mxCell>
-        <mxCell id="c20" value="Start refund&lt;br&gt;(REFUNDING)" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1"><mxGeometry x="355.0" y="659.0" width="190" height="46" as="geometry"/></mxCell>
-        <mxCell id="c21" value="refund&lt;br&gt;succeeded?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="365.0" y="738.0" width="170" height="72" as="geometry"/></mxCell>
-        <mxCell id="c22" value="Alert manager: retry&lt;br&gt;or process manually" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1"><mxGeometry x="655.0" y="751.0" width="190" height="46" as="geometry"/></mxCell>
-        <mxCell id="c23" value="Notify customer&lt;br&gt;(and manager)" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1"><mxGeometry x="355.0" y="843.0" width="190" height="46" as="geometry"/></mxCell>
-        <mxCell id="c24" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="435.0" y="943.0" width="30" height="30" as="geometry"/></mxCell>
-        <mxCell id="c25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5000;exitY=1.0000;exitDx=0;exitDy=0;entryX=0.5000;entryY=0.0000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c10" target="c12"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
-        <mxCell id="c26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5000;exitY=1.0000;exitDx=0;exitDy=0;entryX=0.5000;entryY=0.0000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c11" target="c13"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
-        <mxCell id="c27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1.0000;exitY=0.5000;exitDx=0;exitDy=0;entryX=0.5000;entryY=0.0000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c12" target="c14"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="450.0" y="222.0"/></Array></mxGeometry></mxCell>
-        <mxCell id="c28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5000;exitY=1.0000;exitDx=0;exitDy=0;entryX=0.5000;entryY=0.0000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c14" target="c15"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
-        <mxCell id="c29" value="[no]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.0000;exitY=0.5000;exitDx=0;exitDy=0;entryX=1.0000;entryY=0.5000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c15" target="c16"><mxGeometry relative="1" x="0.0435" as="geometry"><mxPoint x="0.0" y="-14.0" as="offset"/></mxGeometry></mxCell>
-        <mxCell id="c30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5000;exitY=1.0000;exitDx=0;exitDy=0;entryX=0.5000;entryY=0.0000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c16" target="c17"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
-        <mxCell id="c31" value="[yes]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5000;exitY=1.0000;exitDx=0;exitDy=0;entryX=0.5000;entryY=0.0000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c15" target="c18"><mxGeometry relative="1" x="-0.0606" as="geometry"><mxPoint x="28.5" y="0.0" as="offset"/></mxGeometry></mxCell>
-        <mxCell id="c32" value="[not yet out&lt;br&gt;for delivery]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5000;exitY=1.0000;exitDx=0;exitDy=0;entryX=1.0000;entryY=0.5000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c13" target="c18"><mxGeometry relative="1" x="-0.2969" as="geometry"><Array as="points"><mxPoint x="750.0" y="498.0"/></Array><mxPoint x="0.0" y="0.0" as="offset"/></mxGeometry></mxCell>
-        <mxCell id="c33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5000;exitY=1.0000;exitDx=0;exitDy=0;entryX=0.5000;entryY=0.0000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c18" target="c19"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
-        <mxCell id="c34" value="[yes]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5000;exitY=1.0000;exitDx=0;exitDy=0;entryX=0.5000;entryY=0.0000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c19" target="c20"><mxGeometry relative="1" x="-0.0606" as="geometry"><mxPoint x="28.5" y="0.0" as="offset"/></mxGeometry></mxCell>
-        <mxCell id="c35" value="[no]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.0000;exitY=0.5000;exitDx=0;exitDy=0;entryX=0.0000;entryY=0.5000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c19" target="c23"><mxGeometry relative="1" x="-0.8864" as="geometry"><Array as="points"><mxPoint x="322.0" y="590.0"/><mxPoint x="322.0" y="866.0"/></Array><mxPoint x="0.0" y="-14.0" as="offset"/></mxGeometry></mxCell>
-        <mxCell id="c36" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5000;exitY=1.0000;exitDx=0;exitDy=0;entryX=0.5000;entryY=0.0000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c20" target="c21"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
-        <mxCell id="c37" value="[yes]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5000;exitY=1.0000;exitDx=0;exitDy=0;entryX=0.5000;entryY=0.0000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c21" target="c23"><mxGeometry relative="1" x="-0.0606" as="geometry"><mxPoint x="28.5" y="0.0" as="offset"/></mxGeometry></mxCell>
-        <mxCell id="c38" value="[no: error /&lt;br&gt;attempts exhausted]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1.0000;exitY=0.5000;exitDx=0;exitDy=0;entryX=0.0000;entryY=0.5000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c21" target="c22"><mxGeometry relative="1" x="0.0833" as="geometry"><mxPoint x="0.0" y="-30.0" as="offset"/></mxGeometry></mxCell>
-        <mxCell id="c39" value="retry refund" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5000;exitY=0.0000;exitDx=0;exitDy=0;entryX=1.0000;entryY=0.5000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c22" target="c20"><mxGeometry relative="1" x="-0.1314" as="geometry"><Array as="points"><mxPoint x="750.0" y="682.0"/></Array><mxPoint x="0.0" y="-14.0" as="offset"/></mxGeometry></mxCell>
-        <mxCell id="c40" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5000;exitY=1.0000;exitDx=0;exitDy=0;entryX=0.5000;entryY=0.0000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c23" target="c24"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c2" value="Activity 4 – Cancel an order or reservation" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="10" y="8" width="700" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="0" y="50" width="300" height="1330.0" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" value="Customer" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#000000;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="0" y="50" width="300" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="300" y="50" width="300" height="1330.0" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" value="System" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#000000;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="300" y="50" width="300" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="600" y="50" width="300" height="1330.0" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" value="Restaurant manager" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#000000;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="600" y="50" width="300" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" value="Rules: order – customer may cancel until PREPARING starts; reservation – before the cancellation deadline. Manager cancels while not OUT_FOR_DELIVERY." style="shape=note;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=6;fontSize=11;fillColor=#FFF2CC;strokeColor=#000000;size=14;" vertex="1" parent="1">
+          <mxGeometry x="640" y="1046.0" width="250" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c10" value="" style="ellipse;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="435" y="115.0" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="c12" value="Provide cancellation details&lt;br&gt;(order or reservation)" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="55.0" y="389.0" width="190" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c13" value="Provide restaurant&lt;br&gt;cancellation reason" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="655.0" y="389.0" width="190" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c14" value="Load item; check current status&lt;br&gt;and cancellation deadline" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="345.0" y="481.0" width="210" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c15" value="customer&lt;br&gt;cancel allowed?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="360.0" y="560.0" width="180" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="c16" value="Receive refusal&lt;br&gt;(too late / already&lt;br&gt;being prepared)" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="55.0" y="565.5" width="190" height="61" as="geometry" />
+        </mxCell>
+        <mxCell id="c17" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="135.0" y="673.0" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="c18" value="Set status CANCELLED;&lt;br&gt;release table / stock" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="355.0" y="665.0" width="190" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c19" value="payment&lt;br&gt;captured?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="365.0" y="744.0" width="170" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="c20" value="Start refund&lt;br&gt;(REFUNDING)" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="355.0" y="849.0" width="190" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c21" value="refund&lt;br&gt;succeeded?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="365.0" y="928.0" width="170" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="c22" value="Alert manager: retry&lt;br&gt;or process manually" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="655.0" y="941.0" width="190" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c23" value="Notify customer&lt;br&gt;(and manager)" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="355.0" y="1033.0" width="190" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c24" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="435.0" y="1133.0" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="c25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="c10" target="receive_request">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="receive_request" target="initiator">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1.0000;exitY=0.5000;exitDx=0;exitDy=0;entryX=0.5000;entryY=0.0000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c12" target="c14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="450.0" y="412.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5000;exitY=1.0000;exitDx=0;exitDy=0;entryX=0.5000;entryY=0.0000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c14" target="c15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c29" value="[no]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.0000;exitY=0.5000;exitDx=0;exitDy=0;entryX=1.0000;entryY=0.5000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c15" target="c16">
+          <mxGeometry relative="1" x="0.0435" as="geometry">
+            <mxPoint x="0.0" y="-14.0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5000;exitY=1.0000;exitDx=0;exitDy=0;entryX=0.5000;entryY=0.0000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c16" target="c17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c31" value="[yes]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="c15" target="merge_cancel">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="28" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c32" value="[not yet out&lt;br&gt;for delivery]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=1;entryY=0.5;" edge="1" parent="1" source="c13" target="merge_cancel">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="750" y="648" />
+            </Array>
+            <mxPoint x="0" y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5000;exitY=1.0000;exitDx=0;exitDy=0;entryX=0.5000;entryY=0.0000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c18" target="c19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c34" value="[yes]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="c19" target="merge_refund">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="28" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c35" value="[no]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="c19" target="merge_notify">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="322" y="780" />
+              <mxPoint x="322" y="1016" />
+            </Array>
+            <mxPoint x="0" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c36" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5000;exitY=1.0000;exitDx=0;exitDy=0;entryX=0.5000;entryY=0.0000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c20" target="c21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c37" value="[yes]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="c21" target="merge_notify">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="28" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c38" value="[no: error /&lt;br&gt;attempts exhausted]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1.0000;exitY=0.5000;exitDx=0;exitDy=0;entryX=0.0000;entryY=0.5000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c21" target="c22">
+          <mxGeometry relative="1" x="0.0833" as="geometry">
+            <mxPoint x="0.0" y="-30.0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c39" value="retry refund" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=0;entryX=1;entryY=0.5;" edge="1" parent="1" source="c22" target="merge_refund">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="750" y="830" />
+            </Array>
+            <mxPoint x="0" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c40" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5000;exitY=1.0000;exitDx=0;exitDy=0;entryX=0.5000;entryY=0.0000;entryDx=0;entryDy=0;" edge="1" parent="1" source="c23" target="c24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="receive_request" value="Receive cancellation&lt;br&gt;request" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="355" y="190" width="190" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="initiator" value="Request initiated by?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="365" y="266" width="170" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="initiator_customer" value="[customer]" edge="1" parent="1" source="initiator" target="c12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="150" y="302" />
+            </Array>
+            <mxPoint x="0" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="initiator_manager" value="[manager]" edge="1" parent="1" source="initiator" target="c13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="750" y="302" />
+            </Array>
+            <mxPoint x="0" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="merge_cancel" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="440" y="638" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="merge_cancel_out" value="" edge="1" parent="1" source="merge_cancel" target="c18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="merge_refund" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="440" y="820" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="merge_refund_out" value="" edge="1" parent="1" source="merge_refund" target="c20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="merge_notify" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="440" y="1006" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="merge_notify_out" value="" edge="1" parent="1" source="merge_notify" target="c23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
