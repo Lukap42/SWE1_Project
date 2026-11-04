@@ -1,2 +1,3 @@
 Brief Description.tex
 User Stories.tex
+Checkpoint 2.tex
