@@ -5,7 +5,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="c2" value="Activity 1 – Place and pay for a delivery order" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="c2" value="Activity 1 - Place and pay for a delivery order" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="10" y="8" width="700" height="30" as="geometry" />
         </mxCell>
         <mxCell id="c3" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;" vertex="1" parent="1">
