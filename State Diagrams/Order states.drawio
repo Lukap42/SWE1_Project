@@ -1,267 +1,210 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net">
-  <diagram name="Strona-1" id="nED28EO-WV07HM07nupL">
-    <mxGraphModel dx="631" dy="642" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="light-dark(#FFFFFF,#FFFFFF)" math="0" shadow="0">
+  <diagram name="State diagram | Order" id="Order states">
+    <mxGraphModel grid="0" page="1" pageWidth="1320" pageHeight="865" background="#ffffff">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-1" parent="1" style="ellipse;html=1;shape=startState;fillColor=light-dark(#000000,#000000);strokeColor=light-dark(#FF0000,#000000);" value="" vertex="1">
-          <mxGeometry height="30" width="30" x="60" y="247.5" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-3" parent="1" style="ellipse;html=1;shape=endState;fillColor=light-dark(#000000,#000000);strokeColor=light-dark(#FF0000,#000000);" value="" vertex="1">
-          <mxGeometry height="30" width="30" x="65" y="510" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-4" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-5">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="110" y="265" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-8" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-9">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="310" y="265" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-29" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-28">
-          <mxGeometry relative="1" x="-0.3412" as="geometry">
-            <Array as="points">
-              <mxPoint x="160" y="207.5" />
-              <mxPoint x="180" y="207.5" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-72" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-71">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="200" y="332.5" />
-            </Array>
-            <mxPoint x="200" y="350" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;strokeColor=light-dark(#000000,#000000);" value="Pending Payment" vertex="1">
-          <mxGeometry height="55" width="120" x="140" y="235" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;Customer&lt;/div&gt;&lt;div&gt;submits&lt;/div&gt;&lt;div&gt;order&lt;/div&gt;" vertex="1">
-          <mxGeometry height="30" width="60" x="80" y="220" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-30" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-15">
+        <mxCell id="edge0" value="" edge="1" parent="1" source="n_start" target="n_pending" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-35" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);exitX=0.457;exitY=0.927;exitDx=0;exitDy=0;" target="TanQ9UFC_9axFHwlXnBk-34">
-          <mxGeometry relative="1" x="0.4114" as="geometry">
-            <Array as="points">
-              <mxPoint x="420" y="292.5" />
-            </Array>
-            <mxPoint x="380" y="350" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-38" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-34">
-          <mxGeometry relative="1" x="-0.5307" as="geometry">
-            <Array as="points">
-              <mxPoint x="490" y="350" />
-            </Array>
-            <mxPoint x="380" y="380" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;strokeColor=light-dark(#000000,#000000);" value="Placed" vertex="1">
-          <mxGeometry height="60" width="120" x="400" y="232.5" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-11" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;Payment&lt;/div&gt;&lt;div&gt;accepted&lt;/div&gt;" vertex="1">
-          <mxGeometry height="30" width="60" x="255" y="220" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-13" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="Order accepted" vertex="1">
-          <mxGeometry height="30" width="60" x="545" y="230" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-16" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-18">
-          <mxGeometry relative="1" x="0.1627" as="geometry">
-            <Array as="points" />
-            <mxPoint x="570" y="350" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-41" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-34">
-          <mxGeometry relative="1" x="-0.8381" as="geometry">
-            <Array as="points">
-              <mxPoint x="660" y="370" />
-            </Array>
-            <mxPoint x="250" y="370" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;strokeColor=light-dark(#000000,#000000);" value="Preparing" vertex="1">
-          <mxGeometry height="60" width="120" x="630" y="232.5" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-17" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="Restaurant finished preparing" vertex="1">
-          <mxGeometry height="30" width="60" x="700" y="370" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-20" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-21">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="690" y="650" />
-            </Array>
-            <mxPoint x="450" y="390" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-50" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-34">
-          <mxGeometry relative="1" x="-0.8176" as="geometry">
-            <Array as="points">
-              <mxPoint x="660" y="410" />
-              <mxPoint x="420" y="410" />
-            </Array>
-            <mxPoint x="200" y="390" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-82" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-45" value="">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="550" y="530" />
-              <mxPoint x="550" y="530" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;strokeColor=light-dark(#000000,#000000);" value="Ready for delivery" vertex="1">
-          <mxGeometry height="60" width="120" x="630" y="490" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-24" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-23">
+        <mxCell id="edge1" value="" edge="1" parent="1" source="n_pending" target="n_unknown" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-46" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-45">
+        <mxCell id="edge2" value="" edge="1" parent="1" source="n_pending" target="n_failed" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=1;exitY=0.25;entryX=1;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="99.5" />
+              <mxPoint x="390" y="63" />
+              <mxPoint x="1210" y="63" />
+              <mxPoint x="1210" y="115" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge3" value="" edge="1" parent="1" source="n_unknown" target="n_failed" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-21" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;strokeColor=light-dark(#000000,#000000);" value="Out for delivery" vertex="1">
-          <mxGeometry height="60" width="120" x="354" y="610" as="geometry" />
+        <mxCell id="edge4" value="" edge="1" parent="1" source="n_failed" target="n_pending" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=0.25;exitY=1;entryX=1;entryY=0.75;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="993.5" y="185" />
+              <mxPoint x="385" y="185" />
+              <mxPoint x="385" y="130.5" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-22" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="Driver assigned and order picked up" vertex="1">
-          <mxGeometry height="45" width="60" x="530" y="660" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-26" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-3">
+        <mxCell id="edge5" value="" edge="1" parent="1" source="n_pending" target="n_placed" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-23" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;strokeColor=light-dark(#000000,#000000);" value="Delivered" vertex="1">
-          <mxGeometry height="60" width="120" x="135" y="610" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-25" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;Driver delivers&lt;/div&gt;&lt;div&gt;Delivery marked off&lt;/div&gt;" vertex="1">
-          <mxGeometry height="55" width="60" x="275" y="575" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-32" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-5">
-          <mxGeometry relative="1" x="0.2082" as="geometry">
-            <Array as="points">
-              <mxPoint x="230" y="120" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-75" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-71">
+        <mxCell id="edge6" value="" edge="1" parent="1" source="n_unknown" target="n_placed" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=0.5;exitY=1;entryX=1;entryY=0.25;">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="30" y="110" />
+              <mxPoint x="650" y="234.5" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-28" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;strokeColor=light-dark(#000000,#000000);" value="Payment Failed" vertex="1">
-          <mxGeometry height="60" width="120" x="160" y="80" as="geometry" />
+        <mxCell id="edge7" value="" edge="1" parent="1" source="n_placed" target="n_prep" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-31" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="Payment declined" vertex="1">
-          <mxGeometry height="30" width="60" x="120" y="160" as="geometry" />
+        <mxCell id="edge8" value="" edge="1" parent="1" source="n_prep" target="n_ready" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-33" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="Customer retries payment" vertex="1">
-          <mxGeometry height="30" width="60" x="230" y="160" as="geometry" />
+        <mxCell id="edge9" value="" edge="1" parent="1" source="n_ready" target="n_out" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-55" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-53">
+        <mxCell id="edge10" value="" edge="1" parent="1" source="n_out" target="n_delivered" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge11" value="" edge="1" parent="1" source="n_out" target="n_deliveryfail" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge12" value="" edge="1" parent="1" source="n_deliveryfail" target="n_ready" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=0.5;exitY=0;entryX=1;entryY=0.75;">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="380" y="450" />
+              <mxPoint x="650" y="567" />
+              <mxPoint x="395" y="567" />
+              <mxPoint x="395" y="520.5" />
             </Array>
-            <mxPoint x="120" y="350" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-34" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;strokeColor=light-dark(#000000,#000000);" value="Cancelled paid order" vertex="1">
-          <mxGeometry height="55" width="120" x="320" y="335" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-36" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="Customer cancels" vertex="1">
-          <mxGeometry height="30" width="50" x="350" y="299" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-39" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="Order rejected by restaurant" vertex="1">
-          <mxGeometry height="30" width="70" x="490" y="305" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-42" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="Kitchen fails to prepare" vertex="1">
-          <mxGeometry height="30" width="60" x="590" y="330" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-48" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-18">
+        <mxCell id="edge13" value="" edge="1" parent="1" source="n_placed" target="n_cancel" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.25;">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="580" y="510" />
-              <mxPoint x="580" y="510" />
-            </Array>
-            <mxPoint x="560" y="560" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-78" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-34">
-          <mxGeometry relative="1" x="0.0806" as="geometry">
-            <Array as="points">
-              <mxPoint x="414" y="440" />
-              <mxPoint x="390" y="440" />
+              <mxPoint x="870" y="250" />
+              <mxPoint x="870" y="489.5" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-45" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;strokeColor=light-dark(#000000,#000000);" value="Delivery failed" vertex="1">
-          <mxGeometry height="60" width="120" x="354" y="490" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-47" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;Customer unreachable or delivery driver lost&lt;/div&gt;" vertex="1">
-          <mxGeometry height="30" width="110" x="414" y="560" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-49" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="Manager retries" vertex="1">
-          <mxGeometry height="45" width="60" x="510" y="470" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-58" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-3">
+        <mxCell id="edge14" value="" edge="1" parent="1" source="n_prep" target="n_cancel" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.75;">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="230" y="390" />
-              <mxPoint x="80" y="390" />
+              <mxPoint x="820" y="377" />
+              <mxPoint x="820" y="520.5" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-70" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);innerLoopWaypoints=1;" target="TanQ9UFC_9axFHwlXnBk-53">
-          <mxGeometry relative="1" x="-0.66" as="geometry">
+        <mxCell id="edge15" value="" edge="1" parent="1" source="n_ready" target="n_cancel" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge16" value="" edge="1" parent="1" source="n_deliveryfail" target="n_cancel" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=0.5;exitY=1;entryX=1;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="160" y="442.5" />
-              <mxPoint x="160" y="490" />
-              <mxPoint x="220" y="490" />
+              <mxPoint x="650" y="734" />
+              <mxPoint x="1206" y="734" />
+              <mxPoint x="1206" y="505" />
             </Array>
-            <mxPoint x="160" y="300" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-53" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;strokeColor=light-dark(#000000,#000000);" value="Refunding" vertex="1">
-          <mxGeometry height="55" width="100" x="180" y="415" as="geometry" />
+        <mxCell id="edge17" value="" edge="1" parent="1" source="n_failed" target="n_cancel" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-56" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;Refund processed&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="30" width="60" x="310" y="415" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-61" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="Customer requests cancel" vertex="1">
-          <mxGeometry height="22.5" width="84" x="580" y="430" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-62" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="Refund succeded" vertex="1">
-          <mxGeometry height="30" width="60" x="80" y="460" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-65" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="Refund failed or pending" vertex="1">
-          <mxGeometry height="30" width="90" x="230" y="480" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-71" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;strokeColor=light-dark(#000000,#000000);" value="Cancelled unpaid order" vertex="1">
-          <mxGeometry height="55" width="120" x="15" y="305" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-73" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="Customer cancels" vertex="1">
-          <mxGeometry height="30" width="60" x="200" y="305" as="geometry" />
-        </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-74" edge="1" parent="1" source="TanQ9UFC_9axFHwlXnBk-71" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);" target="TanQ9UFC_9axFHwlXnBk-3">
-          <mxGeometry relative="1" x="0.1886" as="geometry">
+        <mxCell id="edge18" value="" edge="1" parent="1" source="n_unknown" target="n_cancel" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=1;exitY=0.75;entryX=0.75;entryY=0;">
+          <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="30" y="530.8" />
+              <mxPoint x="805" y="130.5" />
+              <mxPoint x="805" y="319" />
+              <mxPoint x="1106.5" y="319" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-76" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="Timed out" vertex="1">
-          <mxGeometry height="30" width="60" x="60" y="80" as="geometry" />
+        <mxCell id="edge19" value="" edge="1" parent="1" source="n_pending" target="n_cancel" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=classic;endFill=1;exitX=0;exitY=0.5;entryX=0.5;entryY=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="60" y="115" />
+              <mxPoint x="60" y="810" />
+              <mxPoint x="1050" y="810" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-79" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="Manager cancels" vertex="1">
-          <mxGeometry height="45" width="60" x="420" y="425" as="geometry" />
+        <mxCell id="n_start" value="" vertex="1" parent="1" style="ellipse;fillColor=#000000;html=1;whiteSpace=wrap;fontSize=12;fontColor=#000000;strokeColor=#000000;strokeWidth=1;fontStyle=0;">
+          <mxGeometry x="228.0" y="20.0" width="24" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="TanQ9UFC_9axFHwlXnBk-84" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="No driver available" vertex="1">
-          <mxGeometry height="45" width="60" x="550" y="530" as="geometry" />
+        <mxCell id="n_pending" value="PENDING_PAYMENT" vertex="1" parent="1" style="rounded=1;arcSize=18;roundedPerimeter=1;fillColor=#141414;html=1;whiteSpace=wrap;fontSize=12;fontColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontStyle=0;">
+          <mxGeometry x="127.0" y="84.0" width="226" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="n_unknown" value="PAYMENT_UNKNOWN" vertex="1" parent="1" style="rounded=1;arcSize=18;roundedPerimeter=1;fillColor=#141414;html=1;whiteSpace=wrap;fontSize=12;fontColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontStyle=0;">
+          <mxGeometry x="537.0" y="84.0" width="226" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="n_failed" value="PAYMENT_FAILED" vertex="1" parent="1" style="rounded=1;arcSize=18;roundedPerimeter=1;fillColor=#141414;html=1;whiteSpace=wrap;fontSize=12;fontColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontStyle=0;">
+          <mxGeometry x="937.0" y="84.0" width="226" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="n_placed" value="PLACED" vertex="1" parent="1" style="rounded=1;arcSize=18;roundedPerimeter=1;fillColor=#141414;html=1;whiteSpace=wrap;fontSize=12;fontColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontStyle=0;">
+          <mxGeometry x="127.0" y="219.0" width="226" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="n_prep" value="PREPARING" vertex="1" parent="1" style="rounded=1;arcSize=18;roundedPerimeter=1;fillColor=#141414;html=1;whiteSpace=wrap;fontSize=12;fontColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontStyle=0;">
+          <mxGeometry x="127.0" y="346.0" width="226" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="n_ready" value="READY_FOR_DELIVERY" vertex="1" parent="1" style="rounded=1;arcSize=18;roundedPerimeter=1;fillColor=#141414;html=1;whiteSpace=wrap;fontSize=12;fontColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontStyle=0;">
+          <mxGeometry x="115.0" y="474.0" width="250" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="n_out" value="OUT_FOR_DELIVERY" vertex="1" parent="1" style="rounded=1;arcSize=18;roundedPerimeter=1;fillColor=#141414;html=1;whiteSpace=wrap;fontSize=12;fontColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontStyle=0;">
+          <mxGeometry x="127.0" y="604.0" width="226" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="n_delivered" value="DELIVERED" vertex="1" parent="1" style="rounded=1;arcSize=18;roundedPerimeter=1;fillColor=#141414;html=1;whiteSpace=wrap;fontSize=12;fontColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontStyle=0;">
+          <mxGeometry x="127.0" y="736.0" width="226" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="n_deliveryfail" value="DELIVERY_FAILED" vertex="1" parent="1" style="rounded=1;arcSize=18;roundedPerimeter=1;fillColor=#141414;html=1;whiteSpace=wrap;fontSize=12;fontColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontStyle=0;">
+          <mxGeometry x="537.0" y="604.0" width="226" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="n_cancel" value="CANCELLED" vertex="1" parent="1" style="rounded=1;arcSize=18;roundedPerimeter=1;fillColor=#141414;html=1;whiteSpace=wrap;fontSize=12;fontColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontStyle=0;">
+          <mxGeometry x="937.0" y="474.0" width="226" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="label1" value="payment times out" vertex="1" parent="1" style="text;html=1;fillColor=#ffffff;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="389.25" y="83.5" width="111.5" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="label2" value="payment declined" vertex="1" parent="1" style="text;html=1;fillColor=#ffffff;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="826.75" y="36.5" width="106.5" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="label3" value="provider confirms decline" vertex="1" parent="1" style="text;html=1;fillColor=#ffffff;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="777.25" y="84.5" width="145.5" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="label4" value="retry after confirmed failure" vertex="1" parent="1" style="text;html=1;fillColor=#ffffff;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="674.75" y="159.5" width="156.5" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="label5" value="payment approved" vertex="1" parent="1" style="text;html=1;fillColor=#ffffff;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="289.0" y="172.5" width="112.0" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="label6" value="capture confirmed [order active]" vertex="1" parent="1" style="text;html=1;fillColor=#ffffff;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="424.25" y="209.5" width="181.5" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="label7" value="restaurant accepts" vertex="1" parent="1" style="text;html=1;fillColor=#ffffff;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="296.0" y="298.5" width="112.0" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="label8" value="food ready" vertex="1" parent="1" style="text;html=1;fillColor=#ffffff;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="288.0" y="426.5" width="70.0" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="label9" value="pickup confirmed" vertex="1" parent="1" style="text;html=1;fillColor=#ffffff;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="290.25" y="558.5" width="103.5" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="label10" value="driver completes delivery" vertex="1" parent="1" style="text;html=1;fillColor=#ffffff;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="301.5" y="689.5" width="145.0" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="label11" value="delivery attempt fails" vertex="1" parent="1" style="text;html=1;fillColor=#ffffff;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="383.75" y="604.5" width="122.5" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="label12" value="manager retries; reassign" vertex="1" parent="1" style="text;html=1;fillColor=#ffffff;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="465.75" y="540.5" width="148.5" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="label13" value="customer cancels / restaurant rejects" vertex="1" parent="1" style="text;html=1;fillColor=#ffffff;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="530.5" y="252.5" width="209.0" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="label14" value="manager cancels / preparation fails" vertex="1" parent="1" style="text;html=1;fillColor=#ffffff;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="480.75" y="350.5" width="198.5" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="label15" value="manager cancels before pickup" vertex="1" parent="1" style="text;html=1;fillColor=#ffffff;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="503.75" y="473.5" width="178.5" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="label16" value="manager cancels after failure" vertex="1" parent="1" style="text;html=1;fillColor=#ffffff;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="842.5" y="703.5" width="167.0" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="label17" value="cancel before preparation" vertex="1" parent="1" style="text;html=1;fillColor=#ffffff;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="1082.0" y="295.5" width="148.0" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="label18" value="cancel while checking payment" vertex="1" parent="1" style="text;html=1;fillColor=#ffffff;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="866.5" y="292.5" width="177.0" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="label19" value="cancel before payment settles" vertex="1" parent="1" style="text;html=1;fillColor=#ffffff;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="654.0" y="783.5" width="172.0" height="23" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
