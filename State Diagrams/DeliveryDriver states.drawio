@@ -1,0 +1,94 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="State – DeliveryDriver" id="d1">
+    <mxGraphModel dx="685" dy="925" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="640" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c4" parent="1" style="ellipse;html=1;fillColor=#000000;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="115" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" parent="1" style="rounded=1;arcSize=25;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;fontColor=#FFFFFF;fontSize=12;" value="Off shift" vertex="1">
+          <mxGeometry height="64" width="140" x="60" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" parent="1" style="rounded=1;arcSize=25;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;fontColor=#FFFFFF;fontSize=12;" value="Available" vertex="1">
+          <mxGeometry height="64" width="140" x="360" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" parent="1" style="rounded=1;arcSize=25;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;fontColor=#FFFFFF;fontSize=12;" value="At capacity" vertex="1">
+          <mxGeometry height="64" width="140" x="660" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" parent="1" style="rounded=1;arcSize=25;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;fontColor=#FFFFFF;fontSize=12;" value="On break" vertex="1">
+          <mxGeometry height="64" width="140" x="360" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" parent="1" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="115" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="c10" edge="1" parent="1" source="c4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5000;exitY=1.0000;exitDx=0;exitDy=0;entryX=0.5000;entryY=0.0000;entryDx=0;entryDy=0;" target="c5" value="driver registered">
+          <mxGeometry relative="1" x="-0.4286" y="-50" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c11" edge="1" parent="1" source="c5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1.0000;exitY=0.2500;exitDx=0;exitDy=0;entryX=0.0000;entryY=0.2500;entryDx=0;entryDy=0;" target="c6" value="shift starts / driver logs in">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-32" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c12" edge="1" parent="1" source="c6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.0000;exitY=0.7500;exitDx=0;exitDy=0;entryX=1.0000;entryY=0.7500;entryDx=0;entryDy=0;" target="c5" value="shift ends&lt;br&gt;[no active deliveries]">
+          <mxGeometry relative="1" y="22" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c13" edge="1" parent="1" source="c6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1.0000;exitY=0.2500;exitDx=0;exitDy=0;entryX=0.0000;entryY=0.2500;entryDx=0;entryDy=0;" target="c7" value="delivery assigned&lt;br&gt;[count = limit]">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-38" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c14" edge="1" parent="1" source="c7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.0000;exitY=0.7500;exitDx=0;exitDy=0;entryX=1.0000;entryY=0.7500;entryDx=0;entryDy=0;" target="c6" value="delivery completed&lt;br&gt;[count &amp;lt; limit]">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="40" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c15" edge="1" parent="1" source="c6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.2500;exitY=1.0000;exitDx=0;exitDy=0;entryX=0.2500;entryY=0.0000;entryDx=0;entryDy=0;" target="c8" value="break starts&lt;br&gt;[no active deliveries]">
+          <mxGeometry relative="1" x="0.0476" y="-75" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c16" edge="1" parent="1" source="c8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.7500;exitY=0.0000;exitDx=0;exitDy=0;entryX=0.7500;entryY=1.0000;entryDx=0;entryDy=0;" target="c6" value="break ends">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="55" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c17" edge="1" parent="1" source="c8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.0000;exitY=0.5000;exitDx=0;exitDy=0;entryX=0.8500;entryY=1.0000;entryDx=0;entryDy=0;" target="c5" value="shift ends">
+          <mxGeometry relative="1" x="-0.469" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="179" y="452" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c18" edge="1" parent="1" source="c5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5000;exitY=1.0000;exitDx=0;exitDy=0;entryX=0.5000;entryY=0.0000;entryDx=0;entryDy=0;" target="c9" value="account deactivated">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-68" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c19" edge="1" parent="1" source="c6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.2000;exitY=0.0000;exitDx=0;exitDy=0;entryX=0.4000;entryY=0.0000;entryDx=0;entryDy=0;" target="c6" value="delivery assigned&lt;br&gt;[count &amp;lt; limit - 1] / count++">
+          <mxGeometry relative="1" x="-0.2857" y="39" as="geometry">
+            <mxPoint x="-18" y="4" as="offset" />
+            <Array as="points">
+              <mxPoint x="388" y="195" />
+              <mxPoint x="416" y="195" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c20" edge="1" parent="1" source="c6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeColor=#000000;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.6000;exitY=0.0000;exitDx=0;exitDy=0;entryX=0.8000;entryY=0.0000;entryDx=0;entryDy=0;" target="c6" value="delivery completed&lt;br&gt;[count &amp;gt; 1] / count--">
+          <mxGeometry relative="1" x="0.2857" y="45" as="geometry">
+            <mxPoint x="-17" y="-35" as="offset" />
+            <Array as="points">
+              <mxPoint x="444" y="195" />
+              <mxPoint x="472" y="195" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
