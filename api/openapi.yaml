@@ -1,0 +1,2409 @@
+openapi: 3.0.3
+info:
+  title: Restaurant Management System API
+  version: 0.1.0
+  description: 'Editable design draft based on SWE1_Project/REST_API_ENDPOINTS.md (38 endpoints). All paths are
+    prefixed by /api/v1 using servers.url. Decisions made for consistency: asynchronous payment via pending order
+    and signed webhook; public guest booking and ordering; guest lookup with a secret token; generic UUID resource
+    IDs; PLN amounts in grosze. Role governance, table-duration policy, cost data sources, delivery failure handling
+    and notification channels require team confirmation. The x-required-roles extension is explanatory; implement
+    authorization on backend, not in the client.'
+servers:
+- url: /api/v1
+tags:
+- name: Menu
+- name: Accounts
+- name: Orders
+- name: Payments
+- name: Reservations
+- name: Deliveries
+- name: Reports
+paths:
+  /menu:
+    get:
+      tags:
+      - Menu
+      summary: List available menu items
+      operationId: listMenu
+      x-required-roles: Public
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Dish'
+                  nextCursor:
+                    type: string
+                    nullable: true
+                required:
+                - items
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error400'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: category
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+      security: []
+  /menu/{dishId}:
+    get:
+      tags:
+      - Menu
+      summary: Get available dish
+      operationId: getMenuDish
+      x-required-roles: Public
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: dishId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      security: []
+  /menu/items:
+    post:
+      tags:
+      - Menu
+      summary: Create menu item
+      operationId: createDish
+      x-required-roles: RESTAURANT_MANAGER
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DishWrite'
+      security:
+      - bearerAuth: []
+  /menu/items/{dishId}:
+    patch:
+      tags:
+      - Menu
+      summary: Update menu item
+      operationId: updateDish
+      x-required-roles: RESTAURANT_MANAGER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DishPatch'
+      parameters:
+      - name: dishId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      security:
+      - bearerAuth: []
+    delete:
+      tags:
+      - Menu
+      summary: Remove menu item from live offer (soft delete)
+      operationId: deleteDish
+      x-required-roles: RESTAURANT_MANAGER
+      responses:
+        '204':
+          description: No content
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: dishId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      security:
+      - bearerAuth: []
+  /auth/register:
+    post:
+      tags:
+      - Accounts
+      summary: Register customer account
+      operationId: registerCustomer
+      x-required-roles: Public
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+      security: []
+  /auth/login:
+    post:
+      tags:
+      - Accounts
+      summary: Authenticate and obtain access token
+      operationId: login
+      x-required-roles: Public
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResult'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      security: []
+  /auth/logout:
+    post:
+      tags:
+      - Accounts
+      summary: Invalidate authenticated session
+      operationId: logout
+      x-required-roles: Authenticated
+      responses:
+        '204':
+          description: No content
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      security:
+      - bearerAuth: []
+  /users/me:
+    get:
+      tags:
+      - Accounts
+      summary: Get current profile
+      operationId: getMyProfile
+      x-required-roles: Authenticated
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      security:
+      - bearerAuth: []
+  /users:
+    get:
+      tags:
+      - Accounts
+      summary: List staff accounts
+      operationId: listEmployees
+      x-required-roles: ADMIN or authorized RESTAURANT_MANAGER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+                  nextCursor:
+                    type: string
+                    nullable: true
+                required:
+                - items
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: role
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+  /users/{userId}/role:
+    patch:
+      tags:
+      - Accounts
+      summary: Modify employee role
+      operationId: changeUserRole
+      x-required-roles: ADMIN or authorized RESTAURANT_MANAGER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoleUpdate'
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      security:
+      - bearerAuth: []
+      description: Permission to grant elevated roles is a team policy decision. Never allow self-escalation.
+  /orders:
+    post:
+      tags:
+      - Orders
+      summary: Place food order and initiate payment
+      operationId: createOrder
+      x-required-roles: Public / CUSTOMER
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+              example:
+                orderId: 123e4567-e89b-12d3-a456-426614174001
+                status: PENDING_PAYMENT
+                items:
+                - dishId: 123e4567-e89b-12d3-a456-426614174000
+                  name: Pasta
+                  quantity: 2
+                  unitPriceAmountMinor: 3500
+                deliveryAddress:
+                  street: Example Street 10
+                  city: Warsaw
+                  postalCode: 00-001
+                  country: PL
+                totalAmountMinor: 7000
+                currency: PLN
+                paymentStatus: PENDING
+                createdAt: '2026-11-20T17:30:00+01:00'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCreate'
+            example:
+              items:
+              - dishId: 123e4567-e89b-12d3-a456-426614174000
+                quantity: 2
+              deliveryAddress:
+                street: Example Street 10
+                city: Warsaw
+                postalCode: 00-001
+                country: PL
+              contact:
+                name: Example Guest
+                phone: '+48123456789'
+              paymentMethodToken: pm_example_123
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      security:
+      - {}
+      - bearerAuth: []
+      description: 'ASSUMPTION: asynchronous payment; response creates PENDING_PAYMENT order. Provider webhook confirms
+        or fails payment. Do not assume immediate CONFIRMED status. Token in body refers to provider, not raw card
+        credentials.'
+    get:
+      tags:
+      - Orders
+      summary: List operational orders
+      operationId: listOrders
+      x-required-roles: RESTAURANT_MANAGER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+                  nextCursor:
+                    type: string
+                    nullable: true
+                required:
+                - items
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+  /orders/{orderId}:
+    get:
+      tags:
+      - Orders
+      summary: Get order details and tracking status
+      operationId: getOrder
+      x-required-roles: CUSTOMER owner / MANAGER / guest with lookup token
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Guest-Lookup-Token
+        in: header
+        required: false
+        schema:
+          type: string
+      security:
+      - {}
+      - bearerAuth: []
+      description: Guest order retrieval requires an opaque secret lookup token; bearer token not obligatory for
+        that mode.
+  /users/me/orders:
+    get:
+      tags:
+      - Orders
+      summary: List previous customer orders
+      operationId: getMyOrders
+      x-required-roles: CUSTOMER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+                  nextCursor:
+                    type: string
+                    nullable: true
+                required:
+                - items
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+  /orders/{orderId}/status:
+    patch:
+      tags:
+      - Orders
+      summary: Update fulfillment status
+      operationId: updateOrderStatus
+      x-required-roles: RESTAURANT_MANAGER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderStatusUpdate'
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      security:
+      - bearerAuth: []
+  /orders/{orderId}/cancel:
+    post:
+      tags:
+      - Orders
+      summary: Cancel eligible order
+      operationId: cancelOrder
+      x-required-roles: CUSTOMER owner / MANAGER / authorized guest
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelReason'
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      security:
+      - {}
+      - bearerAuth: []
+  /orders/{orderId}/payment:
+    get:
+      tags:
+      - Payments
+      summary: Read payment status without card data
+      operationId: getOrderPayment
+      x-required-roles: CUSTOMER owner / MANAGER / authorized guest
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      security:
+      - {}
+      - bearerAuth: []
+  /payments/webhooks:
+    post:
+      tags:
+      - Payments
+      summary: Receive verified payment provider event
+      operationId: paymentWebhook
+      x-required-roles: Verified payment provider
+      responses:
+        '204':
+          description: No content
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentWebhook'
+      parameters:
+      - name: X-Provider-Signature
+        in: header
+        required: true
+        schema:
+          type: string
+      security: []
+      description: Verify HMAC/provider signature, eventId idempotency and the payment/order reference. Unlike user
+        auth, this route uses provider signature verification.
+  /reservations/availability:
+    get:
+      tags:
+      - Reservations
+      summary: Check reservation availability
+      operationId: checkReservationAvailability
+      x-required-roles: Public
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Availability'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: date
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: time
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: amountOfPeople
+        in: query
+        required: true
+        schema:
+          type: integer
+          minimum: 1
+      security: []
+  /reservations:
+    post:
+      tags:
+      - Reservations
+      summary: Create a reservation atomically
+      operationId: createReservation
+      x-required-roles: Public / CUSTOMER
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationCreate'
+            example:
+              date: '2026-11-20'
+              time: '18:00'
+              amountOfPeople: 4
+              contact:
+                name: Example Guest
+                phone: '+48123456789'
+                email: guest@example.com
+      security:
+      - {}
+      - bearerAuth: []
+      description: Booking operation rechecks overlapping reservations atomically; concurrent conflict -> 409 even
+        if an earlier availability query said available.
+    get:
+      tags:
+      - Reservations
+      summary: List upcoming reservations
+      operationId: listReservations
+      x-required-roles: RESTAURANT_MANAGER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Reservation'
+                  nextCursor:
+                    type: string
+                    nullable: true
+                required:
+                - items
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: from
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+  /reservations/{reservationId}:
+    get:
+      tags:
+      - Reservations
+      summary: Get reservation detail
+      operationId: getReservation
+      x-required-roles: CUSTOMER owner / MANAGER / authorized guest
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: reservationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Guest-Lookup-Token
+        in: header
+        required: false
+        schema:
+          type: string
+      security:
+      - {}
+      - bearerAuth: []
+  /reservations/{reservationId}/cancel:
+    post:
+      tags:
+      - Reservations
+      summary: Cancel eligible reservation
+      operationId: cancelReservation
+      x-required-roles: CUSTOMER owner / MANAGER / authorized guest
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelReason'
+      parameters:
+      - name: reservationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      security:
+      - {}
+      - bearerAuth: []
+  /reservations/{reservationId}/status:
+    patch:
+      tags:
+      - Reservations
+      summary: Set reservation completed or no-show
+      operationId: updateReservationStatus
+      x-required-roles: RESTAURANT_MANAGER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationStatusUpdate'
+      parameters:
+      - name: reservationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      security:
+      - bearerAuth: []
+  /reservations/trends:
+    get:
+      tags:
+      - Reservations
+      summary: Get reservation trends
+      operationId: reservationTrends
+      x-required-roles: RESTAURANT_MANAGER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReservationTrend'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      security:
+      - bearerAuth: []
+  /deliveries/unassigned:
+    get:
+      tags:
+      - Deliveries
+      summary: List unassigned deliveries
+      operationId: getUnassignedDeliveries
+      x-required-roles: RESTAURANT_MANAGER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Delivery'
+                  nextCursor:
+                    type: string
+                    nullable: true
+                required:
+                - items
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+  /drivers/available:
+    get:
+      tags:
+      - Deliveries
+      summary: List available drivers and workload
+      operationId: getAvailableDrivers
+      x-required-roles: RESTAURANT_MANAGER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Driver'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      security:
+      - bearerAuth: []
+  /deliveries/{deliveryId}/assignments:
+    post:
+      tags:
+      - Deliveries
+      summary: Assign delivery to driver
+      operationId: assignDelivery
+      x-required-roles: RESTAURANT_MANAGER
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assignment'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DriverRef'
+      parameters:
+      - name: deliveryId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      security:
+      - bearerAuth: []
+  /drivers/me/deliveries:
+    get:
+      tags:
+      - Deliveries
+      summary: List deliveries assigned to logged-in driver
+      operationId: getMyDeliveries
+      x-required-roles: DELIVERY_DRIVER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Delivery'
+                  nextCursor:
+                    type: string
+                    nullable: true
+                required:
+                - items
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+  /deliveries/{deliveryId}:
+    get:
+      tags:
+      - Deliveries
+      summary: Get delivery detail
+      operationId: getDelivery
+      x-required-roles: Assigned DELIVERY_DRIVER / RESTAURANT_MANAGER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Delivery'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: deliveryId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      security:
+      - bearerAuth: []
+  /deliveries/{deliveryId}/status:
+    patch:
+      tags:
+      - Deliveries
+      summary: Advance delivery lifecycle
+      operationId: updateDeliveryStatus
+      x-required-roles: Assigned DELIVERY_DRIVER / exception MANAGER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Delivery'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeliveryStatusUpdate'
+      parameters:
+      - name: deliveryId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      security:
+      - bearerAuth: []
+  /deliveries/{deliveryId}/reassign:
+    post:
+      tags:
+      - Deliveries
+      summary: Reassign delivery to a different driver
+      operationId: reassignDelivery
+      x-required-roles: RESTAURANT_MANAGER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Delivery'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DriverRef'
+      parameters:
+      - name: deliveryId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      security:
+      - bearerAuth: []
+      description: Reassignment only when current delivery state and manager policy allow it.
+  /deliveries/{deliveryId}/route:
+    get:
+      tags:
+      - Deliveries
+      summary: Get proposed delivery route
+      operationId: getDeliveryRoute
+      x-required-roles: Assigned DELIVERY_DRIVER / RESTAURANT_MANAGER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: deliveryId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      security:
+      - bearerAuth: []
+  /reports/orders/popular-dishes:
+    get:
+      tags:
+      - Reports
+      summary: Count popular dishes in period
+      operationId: getPopularDishes
+      x-required-roles: RESTAURANT_MANAGER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PopularDish'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      security:
+      - bearerAuth: []
+  /reports/financial/monthly:
+    get:
+      tags:
+      - Reports
+      summary: Get monthly earnings and cost breakdown
+      operationId: getMonthlyFinancialReport
+      x-required-roles: RESTAURANT_OWNER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonthlyFinancialReport'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: month
+        in: query
+        required: true
+        schema:
+          type: string
+          pattern: ^[0-9]{4}-(0[1-9]|1[0-2])$
+      security:
+      - bearerAuth: []
+  /reports/financial/comparison:
+    get:
+      tags:
+      - Reports
+      summary: Compare monthly financial reports
+      operationId: compareFinancialMonths
+      x-required-roles: RESTAURANT_OWNER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MonthlyFinancialReport'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: months
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: array
+          minItems: 2
+          items:
+            type: string
+            pattern: ^[0-9]{4}-(0[1-9]|1[0-2])$
+      security:
+      - bearerAuth: []
+  /reports/financial/export:
+    get:
+      tags:
+      - Reports
+      summary: Export monthly CSV/PDF financial report
+      operationId: exportFinancialReport
+      x-required-roles: RESTAURANT_OWNER
+      responses:
+        '200':
+          description: OK
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '403':
+          $ref: '#/components/responses/Error403'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '409':
+          $ref: '#/components/responses/Error409'
+        '422':
+          $ref: '#/components/responses/Error422'
+        '503':
+          $ref: '#/components/responses/Error503'
+      parameters:
+      - name: month
+        in: query
+        required: true
+        schema:
+          type: string
+          pattern: ^[0-9]{4}-(0[1-9]|1[0-2])$
+      - name: format
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - csv
+          - pdf
+      security:
+      - bearerAuth: []
+      description: Response Content-Type is text/csv or application/pdf based on query. Binary schema is a compact
+        documentation placeholder.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  responses:
+    Error400:
+      description: Invalid request format
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: INVALID_REQUEST
+              message: Invalid request format
+              details: {}
+    Error401:
+      description: Missing or invalid user credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: UNAUTHENTICATED
+              message: Missing or invalid user credentials
+              details: {}
+    Error403:
+      description: Authenticated user is not permitted
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: FORBIDDEN
+              message: Authenticated user is not permitted
+              details: {}
+    Error404:
+      description: Resource does not exist or is not visible
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: NOT_FOUND
+              message: Resource does not exist or is not visible
+              details: {}
+    Error409:
+      description: Resource/state conflict, including double booking
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: CONFLICT
+              message: Resource/state conflict, including double booking
+              details: {}
+    Error422:
+      description: Business validation failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: VALIDATION_FAILED
+              message: Business validation failed
+              details: {}
+    Error503:
+      description: Dependency or service unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: SERVICE_UNAVAILABLE
+              message: Dependency or service unavailable
+              details: {}
+  schemas:
+    Contact:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 120
+        phone:
+          type: string
+          minLength: 7
+          maxLength: 25
+        email:
+          type: string
+          format: email
+      required:
+      - name
+      - phone
+      additionalProperties: false
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          minLength: 1
+        city:
+          type: string
+          minLength: 1
+        postalCode:
+          type: string
+          minLength: 1
+        country:
+          type: string
+          default: PL
+      required:
+      - street
+      - city
+      - postalCode
+      - country
+      additionalProperties: false
+    Dish:
+      type: object
+      properties:
+        dishId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        priceAmountMinor:
+          type: integer
+          minimum: 0
+        currency:
+          type: string
+          enum:
+          - PLN
+        available:
+          type: boolean
+      required:
+      - dishId
+      - name
+      - priceAmountMinor
+      - currency
+      - available
+      additionalProperties: false
+    DishWrite:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        priceAmountMinor:
+          type: integer
+          minimum: 0
+        currency:
+          type: string
+          enum:
+          - PLN
+        available:
+          type: boolean
+      required:
+      - name
+      - priceAmountMinor
+      - currency
+      - available
+      additionalProperties: false
+    DishPatch:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        priceAmountMinor:
+          type: integer
+          minimum: 0
+        currency:
+          type: string
+          enum:
+          - PLN
+        available:
+          type: boolean
+      additionalProperties: false
+    OrderItemInput:
+      type: object
+      properties:
+        dishId:
+          type: string
+          format: uuid
+        quantity:
+          type: integer
+          minimum: 1
+          maximum: 100
+      required:
+      - dishId
+      - quantity
+      additionalProperties: false
+    OrderItem:
+      type: object
+      properties:
+        dishId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        quantity:
+          type: integer
+          minimum: 1
+        unitPriceAmountMinor:
+          type: integer
+          minimum: 0
+      required:
+      - dishId
+      - name
+      - quantity
+      - unitPriceAmountMinor
+      additionalProperties: false
+    OrderCreate:
+      type: object
+      properties:
+        items:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/OrderItemInput'
+        deliveryAddress:
+          $ref: '#/components/schemas/Address'
+        contact:
+          $ref: '#/components/schemas/Contact'
+        paymentMethodToken:
+          type: string
+          description: Opaque payment method token issued by payment provider; never raw card data.
+      required:
+      - items
+      - deliveryAddress
+      - contact
+      - paymentMethodToken
+      additionalProperties: false
+    Order:
+      type: object
+      properties:
+        orderId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+          - PENDING_PAYMENT
+          - CONFIRMED
+          - PREPARING
+          - READY
+          - COMPLETED
+          - CANCELLED
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        deliveryAddress:
+          $ref: '#/components/schemas/Address'
+        totalAmountMinor:
+          type: integer
+          minimum: 0
+        currency:
+          type: string
+          enum:
+          - PLN
+        paymentStatus:
+          type: string
+          enum:
+          - PENDING
+          - SUCCEEDED
+          - FAILED
+          - REFUNDED
+        estimatedDeliveryAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+      required:
+      - orderId
+      - status
+      - items
+      - deliveryAddress
+      - totalAmountMinor
+      - currency
+      - paymentStatus
+      - createdAt
+      additionalProperties: false
+    Payment:
+      type: object
+      properties:
+        paymentId:
+          type: string
+          format: uuid
+        orderId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+          - PENDING
+          - SUCCEEDED
+          - FAILED
+          - REFUNDED
+        amountMinor:
+          type: integer
+          minimum: 0
+        currency:
+          type: string
+          enum:
+          - PLN
+      required:
+      - paymentId
+      - orderId
+      - status
+      - amountMinor
+      - currency
+      additionalProperties: false
+    PaymentWebhook:
+      type: object
+      properties:
+        eventId:
+          type: string
+        paymentId:
+          type: string
+        orderId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+          - SUCCEEDED
+          - FAILED
+      required:
+      - eventId
+      - paymentId
+      - orderId
+      - status
+      additionalProperties: false
+    ReservationCreate:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        time:
+          type: string
+          pattern: ^([01][0-9]|2[0-3]):[0-5][0-9]$
+        amountOfPeople:
+          type: integer
+          minimum: 1
+        contact:
+          $ref: '#/components/schemas/Contact'
+      required:
+      - date
+      - time
+      - amountOfPeople
+      - contact
+      additionalProperties: false
+    Reservation:
+      type: object
+      properties:
+        reservationId:
+          type: string
+          format: uuid
+        tableId:
+          type: string
+          format: uuid
+        date:
+          type: string
+          format: date
+        time:
+          type: string
+        amountOfPeople:
+          type: integer
+          minimum: 1
+        status:
+          type: string
+          enum:
+          - PENDING
+          - CONFIRMED
+          - CANCELLED
+          - COMPLETED
+          - NO_SHOW
+        contact:
+          $ref: '#/components/schemas/Contact'
+      required:
+      - reservationId
+      - tableId
+      - date
+      - time
+      - amountOfPeople
+      - status
+      - contact
+      additionalProperties: false
+    Availability:
+      type: object
+      properties:
+        available:
+          type: boolean
+        availableTables:
+          type: integer
+          minimum: 0
+      required:
+      - available
+      - availableTables
+      additionalProperties: false
+    Driver:
+      type: object
+      properties:
+        driverId:
+          type: string
+          format: uuid
+        displayName:
+          type: string
+        available:
+          type: boolean
+        plannedDeliveries:
+          type: integer
+          minimum: 0
+      required:
+      - driverId
+      - displayName
+      - available
+      - plannedDeliveries
+      additionalProperties: false
+    Delivery:
+      type: object
+      properties:
+        deliveryId:
+          type: string
+          format: uuid
+        orderId:
+          type: string
+          format: uuid
+        driverId:
+          type: string
+          format: uuid
+          nullable: true
+        status:
+          type: string
+          enum:
+          - UNASSIGNED
+          - ASSIGNED
+          - PICKED_UP
+          - IN_TRANSIT
+          - DELIVERED
+          - FAILED
+        deliveryAddress:
+          $ref: '#/components/schemas/Address'
+      required:
+      - deliveryId
+      - orderId
+      - status
+      - deliveryAddress
+      additionalProperties: false
+    Assignment:
+      type: object
+      properties:
+        assignmentId:
+          type: string
+          format: uuid
+        deliveryId:
+          type: string
+          format: uuid
+        driverId:
+          type: string
+          format: uuid
+      required:
+      - assignmentId
+      - deliveryId
+      - driverId
+      additionalProperties: false
+    User:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        role:
+          type: string
+          enum:
+          - CUSTOMER
+          - RESTAURANT_MANAGER
+          - DELIVERY_DRIVER
+          - RESTAURANT_OWNER
+          - ADMIN
+      required:
+      - userId
+      - email
+      - role
+      additionalProperties: false
+    Register:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 8
+          writeOnly: true
+        name:
+          type: string
+      required:
+      - email
+      - password
+      additionalProperties: false
+    Login:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          writeOnly: true
+      required:
+      - email
+      - password
+      additionalProperties: false
+    LoginResult:
+      type: object
+      properties:
+        accessToken:
+          type: string
+        tokenType:
+          type: string
+          enum:
+          - Bearer
+        expiresInSeconds:
+          type: integer
+          minimum: 1
+      required:
+      - accessToken
+      - tokenType
+      - expiresInSeconds
+      additionalProperties: false
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: object
+              additionalProperties: true
+          required:
+          - code
+          - message
+          additionalProperties: false
+      required:
+      - error
+      additionalProperties: false
+    PopularDish:
+      type: object
+      properties:
+        dishId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        salesCount:
+          type: integer
+          minimum: 0
+      required:
+      - dishId
+      - name
+      - salesCount
+      additionalProperties: false
+    FinancialCategory:
+      type: object
+      properties:
+        category:
+          type: string
+        amountMinor:
+          type: integer
+        currency:
+          type: string
+          enum:
+          - PLN
+      required:
+      - category
+      - amountMinor
+      - currency
+      additionalProperties: false
+    MonthlyFinancialReport:
+      type: object
+      properties:
+        month:
+          type: string
+          pattern: ^[0-9]{4}-(0[1-9]|1[0-2])$
+        revenueAmountMinor:
+          type: integer
+        costAmountMinor:
+          type: integer
+        netAmountMinor:
+          type: integer
+        currency:
+          type: string
+          enum:
+          - PLN
+        costCategories:
+          type: array
+          items:
+            $ref: '#/components/schemas/FinancialCategory'
+      required:
+      - month
+      - revenueAmountMinor
+      - costAmountMinor
+      - netAmountMinor
+      - currency
+      - costCategories
+      additionalProperties: false
+    ReservationTrend:
+      type: object
+      properties:
+        tableId:
+          type: string
+          format: uuid
+        reservationCount:
+          type: integer
+          minimum: 0
+      required:
+      - tableId
+      - reservationCount
+      additionalProperties: false
+    Route:
+      type: object
+      properties:
+        deliveryId:
+          type: string
+          format: uuid
+        destination:
+          $ref: '#/components/schemas/Address'
+        routeUrl:
+          type: string
+          format: uri
+          description: Optional provider route link; no guarantee of in-app navigation.
+      required:
+      - deliveryId
+      - destination
+      additionalProperties: false
+    CancelReason:
+      type: object
+      properties:
+        reason:
+          type: string
+          minLength: 1
+      required:
+      - reason
+      additionalProperties: false
+    RoleUpdate:
+      type: object
+      properties:
+        role:
+          type: string
+          enum:
+          - CUSTOMER
+          - RESTAURANT_MANAGER
+          - DELIVERY_DRIVER
+          - RESTAURANT_OWNER
+          - ADMIN
+      required:
+      - role
+      additionalProperties: false
+    OrderStatusUpdate:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - PREPARING
+          - READY
+      required:
+      - status
+      additionalProperties: false
+    ReservationStatusUpdate:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - COMPLETED
+          - NO_SHOW
+      required:
+      - status
+      additionalProperties: false
+    DeliveryStatusUpdate:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - PICKED_UP
+          - IN_TRANSIT
+          - DELIVERED
+          - FAILED
+      required:
+      - status
+      additionalProperties: false
+    DriverRef:
+      type: object
+      properties:
+        driverId:
+          type: string
+          format: uuid
+      required:
+      - driverId
+      additionalProperties: false
