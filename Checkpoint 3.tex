@@ -29,16 +29,8 @@
   \end{itemize}
 \end{frame}
 
-\sequenceframe{Browse the menu}{Sequence Diagrams/restaurant-sequences-01 Browse menu.png}
-\sequenceframe{Manage menu items}{Sequence Diagrams/restaurant-sequences-02 Manage menu.png}
-\sequenceframe{Accounts and roles}{Sequence Diagrams/restaurant-sequences-03 Accounts and roles.png}
 \sequenceframe{Order and payment}{Sequence Diagrams/restaurant-sequences-04 Order and payment.png}
-\sequenceframe{Order tracking and fulfillment}{Sequence Diagrams/restaurant-sequences-05 Order tracking and fulfillment.png}
 \sequenceframe{Book a reservation}{Sequence Diagrams/restaurant-sequences-06 Book a reservation.drawio.png}
-\sequenceframe{Manage reservations}{Sequence Diagrams/restaurant-sequences-07 Manage reservations.drawio.png}
-\sequenceframe{Assign a driver}{Sequence Diagrams/restaurant-sequences-08 Assign a driver.drawio.png}
-\sequenceframe{Execute a delivery}{Sequence Diagrams/restaurant-sequences-09 Execute a delivery.drawio.png}
-\sequenceframe{Reports and export}{Sequence Diagrams/restaurant-sequences-10 Reports and export.drawio.png}
 
 \begin{frame}{Identifiers and authorization}
   \begin{itemize}
@@ -73,26 +65,6 @@ The server calculates the total in grosze. A successful submission creates a
 \texttt{PENDING\_PAYMENT} order with HTTP 201; it does not confirm payment.
 \end{frame}
 
-\begin{frame}[fragile]{Payment callback: request and contract}
-\footnotesize
-\begin{verbatim}
-POST /api/v1/payments/webhooks
-X-Provider-Signature: <provider signature>
-Content-Type: application/json
-
-{
-  "eventId": "evt_0042",
-  "paymentId": "pay_0042",
-  "orderId": "123e4567-e89b-12d3-a456-426614174001",
-  "status": "SUCCEEDED"
-}
-\end{verbatim}
-\footnotesize
-\texttt{PaymentWebhook} requires all four fields. Status is \texttt{SUCCEEDED}
-or \texttt{FAILED}. A processed callback returns HTTP 204; a replay must
-not repeat the state change or send a second confirmation.
-\end{frame}
-
 \begin{frame}[fragile]{Reservation request and booking conflict}
 \footnotesize
 \begin{verbatim}
@@ -114,25 +86,6 @@ server returns HTTP 409 with the shared response shape
 \texttt{error.code}, \texttt{error.message}, and optional \texttt{error.details}.
 \end{frame}
 
-\begin{frame}[fragile]{Delivery status update}
-\footnotesize
-\begin{verbatim}
-PATCH /api/v1/deliveries/{deliveryId}/status
-Authorization: Bearer <access token>
-Content-Type: application/json
-
-{"status": "DELIVERED"}
-\end{verbatim}
-\small
-\begin{itemize}
-  \item \texttt{deliveryId} is a UUID path parameter. The request uses the
-        \texttt{DeliveryStatusUpdate} schema.
-  \item The API verifies the caller may update the assigned delivery and
-        that the requested transition is allowed.
-  \item HTTP 200 returns the updated delivery; HTTP 403 rejects a caller
-        without access; HTTP 422 rejects a disallowed transition.
-\end{itemize}
-\end{frame}
 
 \begin{frame}{Decisions for Checkpoint 4}
   \begin{itemize}

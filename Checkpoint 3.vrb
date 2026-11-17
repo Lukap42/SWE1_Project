@@ -1,0 +1,19 @@
+\frametitle{Reservation request and booking conflict}
+\footnotesize
+\begin{verbatim}
+POST /api/v1/reservations
+Content-Type: application/json
+
+{
+  "date": "2026-11-20",
+  "time": "18:00",
+  "amountOfPeople": 4,
+  "contact": {"name": "Example Guest", "phone": "+48123456789"}
+}
+\end{verbatim}
+\footnotesize
+\texttt{ReservationCreate} requires a date, local time (\texttt{HH:MM}), a
+positive integer party size, and contact information. HTTP 201 returns
+the confirmed reservation. If another booking takes the slot first, the
+server returns HTTP 409 with the shared response shape
+\texttt{error.code}, \texttt{error.message}, and optional \texttt{error.details}.
