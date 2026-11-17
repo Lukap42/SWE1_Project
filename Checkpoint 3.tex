@@ -1,0 +1,151 @@
+\documentclass{beamer}
+
+\date{November 17, 2026}
+\author{\L{}ukasz Pi\k{e}tka, Micha\l{} Krzysztosiak, Konrad Miturski, Micha\l{} Sobczak}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+
+\title{Checkpoint 3}
+
+\newcommand{\sequenceframe}[2]{%
+  \begin{frame}{#1}
+    \centering
+    \includegraphics[width=0.98\textwidth,height=0.79\textheight,keepaspectratio]{#2}
+  \end{frame}%
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{System communication}
+  \begin{itemize}
+    \item The customer, staff, and driver interfaces send JSON requests to the Restaurant API under \texttt{/api/v1}.
+    \item The backend enforces permissions and coordinates the database, payment provider, and notification and routing services.
+    \item Read the sequence diagrams from top to bottom. The labeled alternatives show success, refusal, conflicts, and service failures.
+  \end{itemize}
+\end{frame}
+
+\sequenceframe{Browse the menu}{Sequence Diagrams/restaurant-sequences-01 Browse menu.png}
+\sequenceframe{Manage menu items}{Sequence Diagrams/restaurant-sequences-02 Manage menu.png}
+\sequenceframe{Accounts and roles}{Sequence Diagrams/restaurant-sequences-03 Accounts and roles.png}
+\sequenceframe{Order and payment}{Sequence Diagrams/restaurant-sequences-04 Order and payment.png}
+\sequenceframe{Order tracking and fulfillment}{Sequence Diagrams/restaurant-sequences-05 Order tracking and fulfillment.png}
+\sequenceframe{Book a reservation}{Sequence Diagrams/restaurant-sequences-06 Book a reservation.drawio.png}
+\sequenceframe{Manage reservations}{Sequence Diagrams/restaurant-sequences-07 Manage reservations.drawio.png}
+\sequenceframe{Assign a driver}{Sequence Diagrams/restaurant-sequences-08 Assign a driver.drawio.png}
+\sequenceframe{Execute a delivery}{Sequence Diagrams/restaurant-sequences-09 Execute a delivery.drawio.png}
+\sequenceframe{Reports and export}{Sequence Diagrams/restaurant-sequences-10 Reports and export.drawio.png}
+
+\begin{frame}{Identifiers and authorization}
+  \begin{itemize}
+    \item Resource identifiers are UUID strings. Knowing an identifier does not grant access.
+    \item Protected routes use \texttt{Authorization: Bearer <token>}. The backend checks the role and, where applicable, ownership or driver assignment.
+    \item Guests can submit orders and reservations. The guest access credential for later lookup is still to be specified.
+    \item Payment callbacks use a provider signature. The backend verifies the event and its payment reference before changing any state.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Order submission: request and contract}
+\footnotesize
+\begin{verbatim}
+POST /api/v1/orders
+Idempotency-Key: checkout-4e31
+Content-Type: application/json
+
+{
+  "items": [{
+    "dishId": "123e4567-e89b-12d3-a456-426614174000",
+    "quantity": 2
+  }],
+  "deliveryAddress": {"street": "Example 10", "city": "Warsaw",
+                      "postalCode": "00-001", "country": "PL"},
+  "contact": {"name": "Example Guest", "phone": "+48123456789"},
+  "paymentMethodToken": "pm_example_123"
+}
+\end{verbatim}
+\footnotesize
+\texttt{OrderCreate} requires at least one item. Each quantity is an integer from 1 to 100.
+The server calculates the total in grosze. A successful submission creates a
+\texttt{PENDING\_PAYMENT} order with HTTP 201; it does not confirm payment.
+\end{frame}
+
+\begin{frame}[fragile]{Payment callback: request and contract}
+\footnotesize
+\begin{verbatim}
+POST /api/v1/payments/webhooks
+X-Provider-Signature: <provider signature>
+Content-Type: application/json
+
+{
+  "eventId": "evt_0042",
+  "paymentId": "pay_0042",
+  "orderId": "123e4567-e89b-12d3-a456-426614174001",
+  "status": "SUCCEEDED"
+}
+\end{verbatim}
+\footnotesize
+\texttt{PaymentWebhook} requires all four fields. Status is \texttt{SUCCEEDED}
+or \texttt{FAILED}. A processed callback returns HTTP 204; a replay must
+not repeat the state change or send a second confirmation.
+\end{frame}
+
+\begin{frame}[fragile]{Reservation request and booking conflict}
+\footnotesize
+\begin{verbatim}
+POST /api/v1/reservations
+Content-Type: application/json
+
+{
+  "date": "2026-11-20",
+  "time": "18:00",
+  "amountOfPeople": 4,
+  "contact": {"name": "Example Guest", "phone": "+48123456789"}
+}
+\end{verbatim}
+\footnotesize
+\texttt{ReservationCreate} requires a date, local time (\texttt{HH:MM}), a
+positive integer party size, and contact information. HTTP 201 returns
+the confirmed reservation. If another booking takes the slot first, the
+server returns HTTP 409 with the shared response shape
+\texttt{error.code}, \texttt{error.message}, and optional \texttt{error.details}.
+\end{frame}
+
+\begin{frame}[fragile]{Delivery status update}
+\footnotesize
+\begin{verbatim}
+PATCH /api/v1/deliveries/{deliveryId}/status
+Authorization: Bearer <access token>
+Content-Type: application/json
+
+{"status": "DELIVERED"}
+\end{verbatim}
+\small
+\begin{itemize}
+  \item \texttt{deliveryId} is a UUID path parameter. The request uses the
+        \texttt{DeliveryStatusUpdate} schema.
+  \item The API verifies the caller may update the assigned delivery and
+        that the requested transition is allowed.
+  \item HTTP 200 returns the updated delivery; HTTP 403 rejects a caller
+        without access; HTTP 422 rejects a disallowed transition.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Decisions for Checkpoint 4}
+  \begin{itemize}
+    \item Align order state names across the diagrams and API
+          (\texttt{PLACED}/\texttt{CONFIRMED}, \texttt{DELIVERED}/\texttt{COMPLETED}).
+    \item Specify payment reconciliation after timeouts, late capture after
+          cancellation, and refund retry and manual review.
+    \item Finalize guest credentials, table duration and timezone, and which
+          roles may grant staff permissions.
+    \item Check each use case against its sequence and message schema,
+          including provider failures and retries.
+  \end{itemize}
+  \small Full contract: \texttt{api/openapi.yaml}.
+\end{frame}
+
+\end{document}
